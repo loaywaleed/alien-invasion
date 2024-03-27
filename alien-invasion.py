@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 import pygame
 import os
 from ship import Ship
@@ -15,6 +16,11 @@ class GameSettings:
         pygame.display.set_caption("Alien Invasion")
         self.bg_color = (0, 0, 0)
         self.ship = Ship(self)
+        # Bullet Shape        
+        self.bullet_speed = 1.0
+        self.bullet_width = 3
+        self.bullet_height = 15
+        self.bullet_colour = (60, 60, 60)
 
     def run_game(self):
         while True:
