@@ -36,6 +36,10 @@ class GameSettings:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 os._exit(0)
+            elif event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_SPACE:
+                    self._fire_bullet()
+                    print("Spacebar pressed")
         keys = pygame.key.get_pressed()
         if keys[pygame.K_LEFT]:
             if self.ship.rect.left > 0:
@@ -43,8 +47,6 @@ class GameSettings:
         if keys[pygame.K_RIGHT]:
             if self.ship.rect.right < self.ship.screen_rect.right:
                 self.ship.rect.centerx += 10
-        if keys[pygame.K_SPACE]:
-            self._fire_bullet()
         if keys[pygame.K_q]:
             os._exit(0)
 
