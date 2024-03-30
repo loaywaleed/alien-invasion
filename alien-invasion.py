@@ -39,7 +39,6 @@ class GameSettings:
             elif event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_SPACE:
                     self._fire_bullet()
-                    print("Spacebar pressed")
         keys = pygame.key.get_pressed()
         if keys[pygame.K_LEFT]:
             if self.ship.rect.left > 0:
