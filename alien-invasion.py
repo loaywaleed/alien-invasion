@@ -29,6 +29,10 @@ class GameSettings:
         while True:
             self._check_events()
             self.bullets.update()
+            # Removing bullets after they disappear
+            for bullet in self.bullets.copy():
+                if bullet.rect.bottom <= 0:
+                    self.bullets.remove(bullet)
             self._update_screen()
             self.clock.tick(self.FPS)
 
