@@ -5,11 +5,11 @@ from pygame.sprite import Sprite
 class Bullet(Sprite):
 
     def __init__(self, game_settings):
-        super.__init__()
+        super().__init__()
 
         self.screen = game_settings.screen
         self.settings = game_settings.settings
-        self.color = game_settings.color
+        self.color = self.settings.bullet_color
 
         self.rect = pygame.Rect(
             0, 0, self.settings.bullet_width, self.settings.bullet_height)
@@ -19,7 +19,7 @@ class Bullet(Sprite):
         self.y = float(self.rect.y)
 
     def update(self):
-        self.y -= self.game_settings.bullet_speed
+        self.y -= self.settings.bullet_speed
         self.rect.y = self.y
 
     def draw_bullet(self):
