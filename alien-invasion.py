@@ -3,6 +3,7 @@ import pygame
 import os
 from ship import Ship
 from bullet import Bullet
+from settings import Settings
 
 
 class GameSettings:
@@ -13,15 +14,13 @@ class GameSettings:
         """Instantiation of the game assets and behaviour"""
         pygame.init()
         self.clock = pygame.time.Clock()
-        self.window = pygame.display.set_mode((0, 0), pygame.FULLSCREEN)
+        self.settings = Settings()
+        self.screen = self.settings.screen
+        self.window = pygame.display.set_mode(self.screen)
         pygame.display.set_caption("Alien Invasion")
-        self.bg_color = (0, 0, 0)
         self.ship = Ship(self)
         # Bullet Shape
-        self.bullet_speed = 1.0
-        self.bullet_width = 3
-        self.bullet_height = 15
-        self.bullet_colour = (180, 180, 180)
+        self.settings = Settings()
 
         # Storing bullets
         self.bullets = pygame.sprite.Group()
@@ -54,7 +53,7 @@ class GameSettings:
         self.bullets.add(bullet)
 
     def _update_screen(self):
-        self.window.fill(self.bg_color)
+        self.window.fill(self.settings.bg_color)
         self.ship.blitme()
         for bullet in self.bullets.sprites():
             bullet.draw_bullet()

@@ -7,7 +7,7 @@ class Bullet(Sprite):
     def __init__(self, game_settings):
         super().__init__()
 
-        self.screen = game_settings.screen
+        self.window = game_settings.window
         self.settings = game_settings.settings
         self.color = self.settings.bullet_color
 
@@ -23,4 +23,4 @@ class Bullet(Sprite):
         self.rect.y = self.y
 
     def draw_bullet(self):
-        pygame.draw.rect(self.screen, self.color, self.rect)
+        pygame.draw.rect(self.window, self.color, self.rect)
