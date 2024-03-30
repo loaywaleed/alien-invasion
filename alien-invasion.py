@@ -33,11 +33,7 @@ class GameSettings:
         """Runs main event loop of the game"""
         while True:
             self._check_events()
-            self.bullets.update()
-            # Removing bullets after they disappear
-            for bullet in self.bullets.copy():
-                if bullet.rect.bottom <= 0:
-                    self.bullets.remove(bullet)
+            self._update_bullets()
             self._update_screen()
             self.clock.tick(self.FPS)
 
@@ -74,6 +70,14 @@ class GameSettings:
         for bullet in self.bullets.sprites():
             bullet.draw_bullet()
         pygame.display.flip()
+
+    def _update_bullets(self):
+        """Method to manage and add/remove bullets when needed"""
+        self.bullets.update()
+        # Removing bullets after they disappear
+        for bullet in self.bullets.copy():
+            if bullet.rect.bottom <= 0:
+                self.bullets.remove(bullet)
 
 
 if __name__ == '__main__':
