@@ -54,8 +54,9 @@ class GameSettings:
             os._exit(0)
 
     def _fire_bullet(self):
-        bullet = Bullet(self)
-        self.bullets.add(bullet)
+        if len(self.bullets) < self.settings.bullets_allowed:
+            bullet = Bullet(self)
+            self.bullets.add(bullet)
 
     def _update_screen(self):
         self.window.fill(self.settings.bg_color)
