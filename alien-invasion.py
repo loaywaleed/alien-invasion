@@ -1,4 +1,8 @@
 #!/usr/bin/env python3
+"""
+Alien Invasion using pygame, drive the millenium falcon to destroy the alien
+fleet
+"""
 import pygame
 import os
 from ship import Ship
@@ -26,6 +30,7 @@ class GameSettings:
         self.bullets = pygame.sprite.Group()
 
     def run_game(self):
+        """Runs main event loop of the game"""
         while True:
             self._check_events()
             self.bullets.update()
@@ -37,6 +42,7 @@ class GameSettings:
             self.clock.tick(self.FPS)
 
     def _check_events(self):
+        """Protected method to constantly check for events"""
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 os._exit(0)
@@ -54,11 +60,15 @@ class GameSettings:
             os._exit(0)
 
     def _fire_bullet(self):
+        """
+        Protected method to fire bullets as long as they are withing the limit
+        """
         if len(self.bullets) < self.settings.bullets_allowed:
             bullet = Bullet(self)
             self.bullets.add(bullet)
 
     def _update_screen(self):
+        """Updates the screen"""
         self.window.fill(self.settings.bg_color)
         self.ship.blitme()
         for bullet in self.bullets.sprites():
