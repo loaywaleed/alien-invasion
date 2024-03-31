@@ -95,10 +95,14 @@ class GameSettings:
 
         # first row of aliens
         for alien_number in range(aliens_horizontal_space):
-            alien = Alien(self)
-            alien.x = alien_width + 2 * alien_width * alien_number
-            alien.rect.x = alien.x
-            self.aliens.add(alien)
+            self._create_one_alien(alien_number)
+
+    def _create_one_alien(self, alien_number):
+        alien = Alien(self)
+        alien_width = alien.rect.width
+        alien.x = alien_width + 2 * alien_width * alien_number
+        alien.rect.x = alien.x
+        self.aliens.add(alien)
 
 
 if __name__ == '__main__':
