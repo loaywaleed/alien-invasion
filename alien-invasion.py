@@ -8,6 +8,7 @@ import os
 from ship import Ship
 from bullet import Bullet
 from settings import Settings
+from alien import Alien
 
 
 class GameSettings:
@@ -23,11 +24,13 @@ class GameSettings:
         self.window = pygame.display.set_mode(self.screen)
         pygame.display.set_caption("Alien Invasion")
         self.ship = Ship(self)
-        # Bullet Shape
         self.settings = Settings()
 
         # Storing bullets
         self.bullets = pygame.sprite.Group()
+        # Storing aliens
+        self.aliens = pygame.sprite.Group()
+        self._create_aliens()
 
     def run_game(self):
         """Runs main event loop of the game"""
@@ -69,6 +72,7 @@ class GameSettings:
         self.ship.blitme()
         for bullet in self.bullets.sprites():
             bullet.draw_bullet()
+        self.aliens.draw(self.window)
         pygame.display.flip()
 
     def _update_bullets(self):
@@ -78,6 +82,10 @@ class GameSettings:
         for bullet in self.bullets.copy():
             if bullet.rect.bottom <= 0:
                 self.bullets.remove(bullet)
+
+    def _create_aliens(self):
+        alien = Alien(self)
+        self.aliens.add(alien)
 
 
 if __name__ == '__main__':
