@@ -86,6 +86,18 @@ class GameSettings:
     def _create_aliens(self):
         alien = Alien(self)
         self.aliens.add(alien)
+        alien_width = alien.rect.width
+        width_available_horizontal = self.settings.screen_width - \
+            (2 * alien_width)
+        aliens_horizontal_space = width_available_horizontal // (
+            2 * alien_width)
+
+        # first row of aliens
+        for alien_number in range(aliens_horizontal_space):
+            alien = Alien(self)
+            alien.x = alien_width + 2 * alien_width * alien_number
+            alien.rect.x = alien.x
+            self.aliens.add(alien)
 
 
 if __name__ == '__main__':
