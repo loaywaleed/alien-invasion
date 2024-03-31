@@ -92,12 +92,12 @@ class GameSettings:
             (2 * alien_width)
         aliens_horizontal_space = width_available_horizontal // (
             2 * alien_width)
-
         # first row of aliens
         for alien_number in range(aliens_horizontal_space):
             self._create_one_alien(alien_number)
 
     def _create_one_alien(self, alien_number):
+        """Protected method that creates one alien ship"""
         alien = Alien(self)
         alien_width = alien.rect.width
         alien.x = alien_width + 2 * alien_width * alien_number
