@@ -84,6 +84,7 @@ class GameSettings:
                 self.bullets.remove(bullet)
 
     def _create_aliens(self):
+        """Protected method to create several aliens"""
         alien = Alien(self)
         self.aliens.add(alien)
         alien_width = alien.rect.width
