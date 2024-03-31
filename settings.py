@@ -9,7 +9,9 @@ class Settings:
     def __init__(self):
         """Instantiation of games setting"""
         # Screen settings.
-        self.screen = (1200, 800)
+        self.screen_width = 1200
+        self.screen_height = 800
+        self.screen = (self.screen_width, self.screen_height)
         self.bg_color = (0, 0, 0)
         # Bullet settings.
         self.bullet_width = 3
