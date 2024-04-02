@@ -87,17 +87,16 @@ class GameSettings:
         """Protected method to create several aliens"""
         alien = Alien(self)
         alien_width, alien_height = alien.rect.size
+        # Space available in x direction for aliens
         width_available_horizontal = self.settings.screen_width - \
             (2 * alien_width)
         aliens_horizontal_space = width_available_horizontal // (
             2 * alien_width)
-        # new
         ship_height = self.ship.rect.height
+        # Space available in y direction for aliens
         height_available_vertical = self.settings.screen_height - \
             (3 * alien_height) - ship_height
         aliens_vertical_space = height_available_vertical // (2 * alien_height)
-        # new done
-        # first row of aliens
         for row_number in range(aliens_vertical_space):
             for alien_number in range(aliens_horizontal_space):
                 self._create_one_alien(alien_number, row_number)
