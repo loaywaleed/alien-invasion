@@ -38,6 +38,7 @@ class GameSettings:
             self._check_events()
             self._update_bullets()
             self._update_screen()
+            self.aliens.update()
             self.clock.tick(self.FPS)
 
     def _check_events(self):
