@@ -38,7 +38,7 @@ class GameSettings:
             self._check_events()
             self._update_bullets()
             self._update_screen()
-            self.aliens.update()
+            self._update_aliens()
             self.clock.tick(self.FPS)
 
     def _check_events(self):
@@ -111,6 +111,21 @@ class GameSettings:
         alien.rect.x = alien.x
         alien.rect.y = alien_height + 2 * alien_height * row_number
         self.aliens.add(alien)
+
+    def _check_aliens_edge(self):
+        for alien in self.aliens.sprites():
+            if alien.check_edges():
+                self._change_aliens_direction()
+                break
+
+    def _update_aliens(self):
+        self._check_aliens_edge()
+        self.aliens.update()
+
+    def _change_aliens_direction(self):
+        for alien in self.aliens.sprites():
+            alien.rect.y += self.settings.aliens_drop_speed
+        self.settings.aliens_direction *= -1  # Switch directions
 
 
 if __name__ == '__main__':
