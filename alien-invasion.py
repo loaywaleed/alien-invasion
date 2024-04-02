@@ -86,22 +86,30 @@ class GameSettings:
     def _create_aliens(self):
         """Protected method to create several aliens"""
         alien = Alien(self)
-        self.aliens.add(alien)
-        alien_width = alien.rect.width
+        alien_width, alien_height = alien.rect.size
         width_available_horizontal = self.settings.screen_width - \
             (2 * alien_width)
         aliens_horizontal_space = width_available_horizontal // (
             2 * alien_width)
+        # new
+        ship_height = self.ship.rect.height
+        height_available_vertical = self.settings.screen_height - \
+            (3 * alien_height) - ship_height
+        aliens_vertical_space = height_available_vertical // (2 * alien_height)
+        # new done
         # first row of aliens
-        for alien_number in range(aliens_horizontal_space):
-            self._create_one_alien(alien_number)
+        for row_number in range(aliens_vertical_space):
+            for alien_number in range(aliens_horizontal_space):
+                self._create_one_alien(alien_number, row_number)
 
-    def _create_one_alien(self, alien_number):
+    def _create_one_alien(self, alien_number, row_number):
         """Protected method that creates one alien ship"""
         alien = Alien(self)
         alien_width = alien.rect.width
+        alien_height = alien.rect.height
         alien.x = alien_width + 2 * alien_width * alien_number
         alien.rect.x = alien.x
+        alien.rect.y = alien_height + 2 * alien_height * row_number
         self.aliens.add(alien)
 
 
