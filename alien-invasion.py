@@ -113,16 +113,19 @@ class GameSettings:
         self.aliens.add(alien)
 
     def _check_aliens_edge(self):
+        """Checks if an alien has reached the edge"""
         for alien in self.aliens.sprites():
             if alien.check_edges():
                 self._change_aliens_direction()
                 break
 
     def _update_aliens(self):
+        """Updates the position of aliens"""
         self._check_aliens_edge()
         self.aliens.update()
 
     def _change_aliens_direction(self):
+        """Changes direction of aliens movement"""
         for alien in self.aliens.sprites():
             alien.rect.y += self.settings.aliens_drop_speed
         self.settings.aliens_direction *= -1  # Switch directions
