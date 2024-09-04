@@ -84,7 +84,10 @@ class GameSettings:
             if bullet.rect.bottom <= 0:
                 self.bullets.remove(bullet)
         collisions = pygame.sprite.groupcollide(
-            self.aliens, self.bullets, True, True)
+            self.bullets, self.aliens, True, True)
+        if not self.aliens:
+            self.bullets.empty()
+            self._create_aliens()
 
     def _create_aliens(self):
         """Protected method to create several aliens"""
