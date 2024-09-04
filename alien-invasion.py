@@ -83,6 +83,9 @@ class GameSettings:
         for bullet in self.bullets.copy():
             if bullet.rect.bottom <= 0:
                 self.bullets.remove(bullet)
+        self._check_collisions()
+
+    def _check_collisions(self):
         collisions = pygame.sprite.groupcollide(
             self.bullets, self.aliens, True, True)
         if not self.aliens:
