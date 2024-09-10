@@ -5,10 +5,12 @@ fleet
 """
 import pygame
 import os
+from time import sleep
 from ship import Ship
 from bullet import Bullet
 from settings import Settings
 from alien import Alien
+from game_stats import GameStats
 
 
 class GameSettings:
@@ -23,6 +25,7 @@ class GameSettings:
         self.screen = self.settings.screen
         self.window = pygame.display.set_mode(self.screen)
         pygame.display.set_caption("Alien Invasion")
+        self.stats = GameStats(self)
         self.ship = Ship(self)
         self.settings = Settings()
 
@@ -86,6 +89,7 @@ class GameSettings:
         self._check_collisions()
 
     def _check_collisions(self):
+        """Checks if a bullet hits an alien"""
         collisions = pygame.sprite.groupcollide(
             self.bullets, self.aliens, True, True)
         if not self.aliens:
@@ -132,13 +136,29 @@ class GameSettings:
         self._check_aliens_edge()
         self.aliens.update()
 
+        if pygame.sprite.spritecollideany(self.ship, self.aliens):
+            print("Millenium Falcon has been hit!")
+            self._ship_is_hit()
+
     def _change_aliens_direction(self):
         """Changes direction of aliens movement"""
         for alien in self.aliens.sprites():
             alien.rect.y += self.settings.aliens_drop_speed
         self.settings.aliens_direction *= -1  # Switch directions
 
+    def _ship_is_hit(self):
+        """Responds to the millenium falcon's collisions with an alien ship"""
+        self.stats.ships_left -= 1
 
+        # Reset the screen
+        self.aliens.empty()
+        self.aliens.empty()
+
+        # Recreate aliens and ship (centered)
+        self._create_aliens()
+        self.ship.center_ship()
+
+        sleep(0.5)
 if __name__ == '__main__':
     alien_invasion = GameSettings()
     alien_invasion.run_game()

@@ -23,3 +23,5 @@ class Settings:
         self.alien_speed = 1.0
         self.aliens_drop_speed = 10
         self.aliens_direction = 1  # 1 right, -1 left
+        # Ship settings
+        self.ship_limit = 3
