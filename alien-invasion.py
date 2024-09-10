@@ -140,6 +140,8 @@ class GameSettings:
             print("Millenium Falcon has been hit!")
             self._ship_is_hit()
 
+        self._check_aliens_reach_bottom()
+
     def _change_aliens_direction(self):
         """Changes direction of aliens movement"""
         for alien in self.aliens.sprites():
@@ -159,6 +161,16 @@ class GameSettings:
         self.ship.center_ship()
 
         sleep(0.5)
+
+    def _check_aliens_reach_bottom(self):
+        """Checks if aliens have reached the bottom of the screen"""
+        screen_rect = self.window.get_rect()
+        for alien in self.aliens.sprites():
+            if alien.rect.bottom >= screen_rect.bottom:
+                self._ship_is_hit()  # Resets the screen
+                break
+
+
 if __name__ == '__main__':
     alien_invasion = GameSettings()
     alien_invasion.run_game()
