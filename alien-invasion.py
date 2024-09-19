@@ -39,9 +39,10 @@ class GameSettings:
         """Runs main event loop of the game"""
         while True:
             self._check_events()
-            self._update_bullets()
+            if self.stats.game_active:
+                self._update_bullets()
+                self._update_aliens()
             self._update_screen()
-            self._update_aliens()
             self.clock.tick(self.FPS)
 
     def _check_events(self):
@@ -150,17 +151,17 @@ class GameSettings:
 
     def _ship_is_hit(self):
         """Responds to the millenium falcon's collisions with an alien ship"""
-        self.stats.ships_left -= 1
-
-        # Reset the screen
-        self.aliens.empty()
-        self.aliens.empty()
-
-        # Recreate aliens and ship (centered)
-        self._create_aliens()
-        self.ship.center_ship()
-
-        sleep(0.5)
+        if self.stats.ships_left > 0:
+            self.stats.ships_left -= 1
+            # Reset the screen
+            self.aliens.empty()
+            self.aliens.empty()
+            # Recreate aliens and ship (centered)
+            self._create_aliens()
+            self.ship.center_ship()
+            sleep(0.5)
+        else:
+            self.stats.game_active = False
 
     def _check_aliens_reach_bottom(self):
         """Checks if aliens have reached the bottom of the screen"""
