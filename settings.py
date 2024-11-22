@@ -25,7 +25,7 @@ class Settings:
         self.speed_factor = 1.1
         self._initialize_dynamic_settings()
 
-    def _initialize_dynamic_settings(self):
+    def initialize_dynamic_settings(self):
         self.ship_speed = 1.5
         self.bullet_speed = 3.0
         self.alien_speed = 1.0
@@ -35,5 +35,3 @@ class Settings:
         self.ship_speed *= self.speed_factor
         self.bullet_speed *= self.speed_factor
         self.alien_speed *= self.speed_factor
-        self.aliens_drop_speed *= self.speed_factor
-        self.aliens_direction *= self.speed_factor
