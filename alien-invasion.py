@@ -11,6 +11,7 @@ from bullet import Bullet
 from settings import Settings
 from alien import Alien
 from game_stats import GameStats
+from button import Button
 
 
 class GameSettings:
@@ -28,6 +29,7 @@ class GameSettings:
         self.stats = GameStats(self)
         self.ship = Ship(self)
         self.settings = Settings()
+        self.play_button = Button(self, "Play")
 
         # Storing bullets
         self.bullets = pygame.sprite.Group()
@@ -78,6 +80,8 @@ class GameSettings:
         for bullet in self.bullets.sprites():
             bullet.draw_bullet()
         self.aliens.draw(self.window)
+        if not self.stats.game_active:
+            self.play_button.draw_button()
         pygame.display.flip()
 
     def _update_bullets(self):

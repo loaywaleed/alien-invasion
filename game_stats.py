@@ -11,7 +11,7 @@ class GameStats:
         self.settings = game_settings.settings
         self.reset_stats()
         # Status settings
-        self.game_active = True
+        self.game_active = False
 
     def reset_stats(self):
         """Resets game stats to initial values"""
