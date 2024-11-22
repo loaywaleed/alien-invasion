@@ -103,6 +103,7 @@ class GameSettings:
         if not self.aliens:
             self.bullets.empty()
             self._create_aliens()
+            self.settings.increase_speed()
 
     def _create_aliens(self):
         """Protected method to create several aliens"""
@@ -169,6 +170,7 @@ class GameSettings:
             sleep(0.5)
         else:
             self.stats.game_active = False
+            pygame.mouse.set_visible(True)
 
     def _check_aliens_reach_bottom(self):
         """Checks if aliens have reached the bottom of the screen"""
@@ -187,6 +189,8 @@ class GameSettings:
             self.bullets.empty()
             self._create_aliens()
             self.ship.center_ship()
+            pygame.mouse.set_visible(False)
+# todo: start game method and press P to play
 
 
 if __name__ == '__main__':
