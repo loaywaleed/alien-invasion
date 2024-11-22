@@ -55,6 +55,9 @@ class GameSettings:
             elif event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_SPACE:
                     self._fire_bullet()
+            elif event.type == pygame.MOUSEBUTTONDOWN:
+                mouse_pos = pygame.mouse.get_pos()
+                self._check_play_button(mouse_pos)
         keys = pygame.key.get_pressed()
         if keys[pygame.K_LEFT]:
             if self.ship.rect.left > 0:
@@ -174,6 +177,10 @@ class GameSettings:
             if alien.rect.bottom >= screen_rect.bottom:
                 self._ship_is_hit()  # Resets the screen
                 break
+
+    def _check_play_button(self, mouse_pos):
+        if self.play_button.rect.collidepoint(mouse_pos):
+            self.stats.game_active = True
 
 
 if __name__ == '__main__':
