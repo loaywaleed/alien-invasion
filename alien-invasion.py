@@ -12,6 +12,7 @@ from settings import Settings
 from alien import Alien
 from game_stats import GameStats
 from button import Button
+from scoreboard import ScoreBoard
 
 
 class GameSettings:
@@ -27,6 +28,7 @@ class GameSettings:
         self.window = pygame.display.set_mode(self.screen)
         pygame.display.set_caption("Alien Invasion")
         self.stats = GameStats(self)
+        self.scoreboard = ScoreBoard(self)
         self.ship = Ship(self)
         self.settings = Settings()
         self.play_button = Button(self, "Play")
@@ -83,6 +85,7 @@ class GameSettings:
         for bullet in self.bullets.sprites():
             bullet.draw_bullet()
         self.aliens.draw(self.window)
+        self.scoreboard.show_score()
         if not self.stats.game_active:
             self.play_button.draw_button()
         pygame.display.flip()
@@ -183,6 +186,7 @@ class GameSettings:
     def _check_play_button(self, mouse_pos):
         button_clicked = self.play_button.rect.collidepoint(mouse_pos)
         if button_clicked and not self.stats.game_active:
+            self.settings.initialize_dynamic_settings()
             self.stats.reset_stats()
             self.stats.game_active = True
             self.aliens.empty()

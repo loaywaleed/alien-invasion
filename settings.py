@@ -23,7 +23,7 @@ class Settings:
         # Ship settings
         self.ship_limit = 3
         self.speed_factor = 1.1
-        self._initialize_dynamic_settings()
+        self.initialize_dynamic_settings()
 
     def initialize_dynamic_settings(self):
         self.ship_speed = 1.5
