@@ -107,10 +107,13 @@ class GameSettings:
             for alien in collisions.values():
                 self.stats.score += self.settings.alien_points * len(alien)
             self.scoreboard.prep_score()
+            self.scoreboard.check_high_score()
         if not self.aliens:
             self.bullets.empty()
             self._create_aliens()
             self.settings.increase_speed()
+            self.stats.level += 1
+            self.scoreboard.prep_level()
 
     def _create_aliens(self):
         """Protected method to create several aliens"""
@@ -194,6 +197,7 @@ class GameSettings:
             self.stats.reset_stats()
             self.stats.game_active = True
             self.scoreboard.prep_score()
+            self.scoreboard.prep_level()
             self.aliens.empty()
             self.bullets.empty()
             self._create_aliens()
