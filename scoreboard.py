@@ -30,4 +30,8 @@ class ScoreBoard:
 
     def show_score(self):
         """Displaying the score on the screen"""
+        round_score = round(self.stats.score, -1)
+        score_str = "{:,}".format(round_score)
+        self.score_image = self.font.render(
+            score_str, True, self.text_color, self.settings.bg_color)
         self.screen.blit(self.score_image, self.score_rect)
