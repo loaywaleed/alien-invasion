@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 """
 Alien Invasion using pygame, drive the millenium falcon to destroy the alien
 fleet
@@ -6,10 +5,10 @@ fleet
 import pygame
 import os
 from time import sleep
-from ship import Ship
-from bullet import Bullet
+from entities.ship import Ship
+from entities.bullet import Bullet
 from settings import Settings
-from alien import Alien
+from entities.alien import Alien
 from game_stats import GameStats
 from button import Button
 from scoreboard import ScoreBoard
@@ -208,8 +207,3 @@ class MilleniumFalcon:
             self.ship.center_ship()
             pygame.mouse.set_visible(False)
 # todo: start game method and press P to play
-
-
-if __name__ == '__main__':
-    game = MilleniumFalcon()
-    game.run_game()

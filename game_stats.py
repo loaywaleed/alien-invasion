@@ -24,7 +24,7 @@ class GameStats:
     def load_high_score(self):
         """Loading the high score from a file"""
         try:
-            with open('high_score.txt', 'r') as file:
+            with open('data/high_score.txt', 'r') as file:
                 self.high_score = int(file.read())
         except (FileNotFoundError, ValueError):
             self.high_score = 0
@@ -32,5 +32,5 @@ class GameStats:
 
     def save_high_score(self):
         """Saving the high score to a file"""
-        with open('high_score.txt', 'w') as file:
+        with open('data/high_score.txt', 'w') as file:
             file.write(str(self.high_score))

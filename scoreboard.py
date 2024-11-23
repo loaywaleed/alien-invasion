@@ -1,5 +1,5 @@
 import pygame.font
-from ship import Ship
+from entities.ship import Ship
 
 
 class ScoreBoard:
