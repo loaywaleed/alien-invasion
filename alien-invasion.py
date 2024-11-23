@@ -54,6 +54,7 @@ class MilleniumFalcon:
         """Protected method to constantly check for events"""
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
+                self.stats.save_high_score()
                 os._exit(0)
             elif event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_SPACE:
