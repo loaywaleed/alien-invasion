@@ -7,11 +7,11 @@ import os
 from time import sleep
 from entities.ship import Ship
 from entities.bullet import Bullet
-from settings import Settings
+from config.settings import Settings
 from entities.alien import Alien
-from game_stats import GameStats
-from button import Button
-from scoreboard import ScoreBoard
+from core.game_stats import GameStats
+from ui.button import Button
+from ui.scoreboard import ScoreBoard
 
 
 class MilleniumFalcon:

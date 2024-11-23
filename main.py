@@ -2,7 +2,7 @@
 """
 Game entry point
 """
-from alien_invasion import MilleniumFalcon
+from core.alien_invasion import MilleniumFalcon
 
 
 def main():
