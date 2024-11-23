@@ -15,7 +15,7 @@ from button import Button
 from scoreboard import ScoreBoard
 
 
-class GameSettings:
+class MilleniumFalcon:
     """Managing game assets and behaviour"""
     FPS = 60
 
@@ -32,6 +32,7 @@ class GameSettings:
         self.ship = Ship(self)
         self.settings = Settings()
         self.play_button = Button(self, "Play")
+        self.stats.load_high_score()
 
         # Storing bullets
         self.bullets = pygame.sprite.Group()
@@ -68,6 +69,7 @@ class GameSettings:
             if self.ship.rect.right < self.ship.screen_rect.right:
                 self.ship.rect.centerx += 10
         if keys[pygame.K_q]:
+            self.stats.save_high_score()
             os._exit(0)
 
     def _fire_bullet(self):
@@ -156,7 +158,6 @@ class GameSettings:
         self.aliens.update()
 
         if pygame.sprite.spritecollideany(self.ship, self.aliens):
-            print("Millenium Falcon has been hit!")
             self._ship_is_hit()
 
         self._check_aliens_reach_bottom()
@@ -169,7 +170,7 @@ class GameSettings:
 
     def _ship_is_hit(self):
         """Responds to the millenium falcon's collisions with an alien ship"""
-        if self.stats.ships_left > 0:
+        if self.stats.ships_left > 1:
             self.stats.ships_left -= 1
             self.scoreboard.prep_ships()
             # Reset the screen
@@ -209,5 +210,5 @@ class GameSettings:
 
 
 if __name__ == '__main__':
-    alien_invasion = GameSettings()
-    alien_invasion.run_game()
+    game = MilleniumFalcon()
+    game.run_game()
