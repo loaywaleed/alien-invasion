@@ -171,6 +171,7 @@ class GameSettings:
         """Responds to the millenium falcon's collisions with an alien ship"""
         if self.stats.ships_left > 0:
             self.stats.ships_left -= 1
+            self.scoreboard.prep_ships()
             # Reset the screen
             self.aliens.empty()
             self.aliens.empty()
@@ -198,6 +199,7 @@ class GameSettings:
             self.stats.game_active = True
             self.scoreboard.prep_score()
             self.scoreboard.prep_level()
+            self.scoreboard.prep_ships()
             self.aliens.empty()
             self.bullets.empty()
             self._create_aliens()

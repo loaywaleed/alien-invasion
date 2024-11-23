@@ -2,13 +2,15 @@
 Module that has ship representation
 """
 import pygame
+from pygame.sprite import Sprite
 
 
-class Ship:
+class Ship(Sprite):
     """Space ship representation"""
 
     def __init__(self, game_settings):
         """Instantiation of the ship"""
+        super().__init__()
         self.window = game_settings.window
         self.screen_rect = game_settings.window.get_rect()
         # loading ship image
