@@ -4,6 +4,7 @@ Module representing Alien
 
 import pygame
 from pygame.sprite import Sprite
+from utils import resource_path
 
 
 class Alien(Sprite):
@@ -14,7 +15,7 @@ class Alien(Sprite):
         super().__init__()
         self.settings = game_settings.settings
         self.window = game_settings.window
-        self.image = pygame.image.load('imgs/alien.bmp')
+        self.image = pygame.image.load(resource_path('imgs/alien.bmp'))
         self.rect = self.image.get_rect()
 
         self.rect.x = self.rect.width

@@ -3,6 +3,7 @@ Module that has ship representation
 """
 import pygame
 from pygame.sprite import Sprite
+from utils import resource_path
 
 
 class Ship(Sprite):
@@ -13,10 +14,11 @@ class Ship(Sprite):
         super().__init__()
         self.window = game_settings.window
         self.screen_rect = game_settings.window.get_rect()
-        # loading ship image
-        self.image = pygame.image.load("imgs/falcon.bmp")
+        # Loading ship image dynamically
+        self.image = pygame.image.load(resource_path("imgs/falcon.bmp"))
         self.rect = self.image.get_rect()
         self.rect.midbottom = self.screen_rect.midbottom
+        self.x = float(self.rect.x)
 
     def blitme(self):
         """Drawing the ship"""
