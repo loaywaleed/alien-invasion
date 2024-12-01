@@ -13,9 +13,9 @@ class Settings:
         self.screen_height = 800
         self.screen = (self.screen_width, self.screen_height)
         self.bg_color = (0, 0, 0)
-        # Bullet settings.
-        self.bullet_width = 300
-        self.bullet_height = 17
+        # Bullet settings
+        self.bullet_width = 4
+        self.bullet_height = 20
         self.bullet_color = (180, 0, 0)
         self.bullets_allowed = 4
         # Alien settings
